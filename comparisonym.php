@@ -9,8 +9,8 @@
 include 'styles/globalheader.php';
 include 'config/config_main.php';
 
-if (!empty($_POST['NumberOfYears']) && is_numeric($_POST['NumberOfYears'])) {
-	$NumberOfYears = $_POST['NumberOfYears'];
+if (!empty($_POST['compareyears']) && is_numeric($_POST['compareyears'])) {
+	$COMPAREYEARS = $_POST['compareyears'];
 }
 if (!empty($_POST['met_num'])) {
 	$metnum = $_POST['met_num'];
@@ -33,7 +33,7 @@ for ($i = 0; $i < $xyears; $i++) {
 }
 sort($output);
 $xyears = count($output);
-if ($NumberOfYears > $xyears) $NumberOfYears = $xyears;
+if ($COMPAREYEARS > $xyears) $COMPAREYEARS = $xyears;
 
 echo "
 <table width='95%' border=0 align=center cellpadding=8>
@@ -52,9 +52,9 @@ for ($i = 1; $i <= $NUMMETER; $i++) {
 	}
 }
 echo "</select>
-<select name='NumberOfYears' onchange='this.form.submit()'>";
+<select name='compareyears' onchange='this.form.submit()'>";
 for ($i = ($xyears); $i >= 0; $i--) {
-	if ($NumberOfYears == $i) {
+	if ($COMPAREYEARS == $i) {
 		echo "<option SELECTED>";
 	} else {
 		echo "<option>";
@@ -110,7 +110,7 @@ var Mychart, options = {
 				text: defaultTitle,
 				style: {fontSize: '1em'}
 			},
-            subtitle: {text: '$NumberOfYears ${lgMONTH[13]} $lgMCOMPARISON'},
+            subtitle: {text: '$COMPAREYEARS ${lgMONTH[13]} $lgMCOMPARISON'},
             xAxis: {
             categories: [
 ";
@@ -156,7 +156,7 @@ echo "]
  };
 Mychart= Highcharts.chart('container',options);
 Mychart.showLoading();
-$.getJSON('programs/programcomparisonym.php?numberofyears=$NumberOfYears', { metnum: $metnum }, function(JSONResponse) {
+$.getJSON('programs/programcomparisonym.php?compareyears=$COMPAREYEARS', { metnum: $metnum }, function(JSONResponse) {
   options.series = JSONResponse.series;
   Mychart= Highcharts.chart('container',options);
   Mychart.hideLoading();

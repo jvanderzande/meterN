@@ -16,12 +16,12 @@ if (!empty($_GET['metnum']) && is_numeric($_GET['metnum'])) {
 } else {
 	$metnum = 1;
 }
-if (!empty($_GET['numberofyears']) && is_numeric($_GET['numberofyears'])) {
-	$numberofyears = $_GET['numberofyears'];
+if (!empty($_GET['compareyears']) && is_numeric($_GET['compareyears'])) {
+	$COMPAREYEARS = $_GET['compareyears'];
 } else {
-	$numberofyears = 5;
+	$COMPAREYEARS = 5;
 }
-if ($numberofyears == 0) $numberofyears = 5;
+if ($COMPAREYEARS == 0) $COMPAREYEARS = 5;
 
 $unitlist         = array();
 $totmeteryearlist = array();
@@ -119,7 +119,7 @@ if (${'TYPE' . $metnum} != 'Sensor') {
 }
 
 $title = "${'METNAME'.$metnum}";
-for ($i = $yearscnt-$numberofyears; $i < $yearscnt; $i++) { // years
+for ($i = $yearscnt-$COMPAREYEARS; $i < $yearscnt; $i++) { // years
 	$year = $totmeteryearlist[$i];
 	$aData=Array();
 	for ($h = 1; $h <= 12; $h++) { //months
