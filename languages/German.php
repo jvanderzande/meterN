@@ -12,6 +12,7 @@ $lgMINDEX='Index';
 $lgMDETAILED='Detail';
 $lgMREAD='Verbräuche';
 $lgMCOMPARISON='Vergleich';
+$lgMCOMPARISONYM='CompareYearMonth';
 $lgMDASH='Übersicht';
 $lgMINFO='Infos';
 
