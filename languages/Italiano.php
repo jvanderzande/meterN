@@ -12,6 +12,7 @@ $lgMINDEX='Indice';
 $lgMDETAILED='Dettagli';
 $lgMREAD='Letture';
 $lgMCOMPARISON='Confronto';
+$lgMCOMPARISONYM='ConfrontoAnni';
 $lgMDASH='Cruscotto';
 $lgMINFO='Informazioni';
 
@@ -76,7 +77,7 @@ $lgSMONTH[9]='Set.';
 $lgSMONTH[10]='Ott.';
 $lgSMONTH[11]='Nov.';
 $lgSMONTH[12]='Dic.';
-$lgSMONTH[13]='Year';
+$lgSMONTH[13]='Anno';
 $lgMONTH[1]='Gennaio';
 $lgMONTH[2]='Febbraio';
 $lgMONTH[3]='Marzo';
