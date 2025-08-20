@@ -119,6 +119,11 @@ if (!empty($_POST['LANGx']) && is_string($_POST['LANGx'])) {
 } else {
 	$LANGx = 'English';
 }
+if (!empty($_POST['COMPAREYEARSx']) && is_string($_POST['COMPAREYEARSx'])) {
+	$COMPAREYEARSx = htmlspecialchars($_POST['COMPAREYEARSx'], ENT_QUOTES, 'UTF-8');
+} else {
+	$COMPAREYEARSx = 0;
+}
 if (!empty($_POST['KEEPDDAYSx']) && is_numeric($_POST['KEEPDDAYSx'])) {
 	$KEEPDDAYSx = $_POST['KEEPDDAYSx'];
 } else {
@@ -157,6 +162,7 @@ if(!defined('checkaccess')){die('Direct access not permitted');}
 \$SUBTITLE=\"$SUBTITLEx\";
 \$STYLE=\"$STYLEx\";
 \$LANG=\"$LANGx\";
+\$COMPAREYEARS=$COMPAREYEARSx;
 
 // ### CLEANUP
 \$KEEPDDAYS=$KEEPDDAYSx;
