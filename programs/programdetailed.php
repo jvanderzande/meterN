@@ -31,6 +31,11 @@ if ($_GET["cumul"] == 1) {
 } else {
 	$cumul = false;
 }
+if ($_GET["hourly"] == 1) {
+	$hourly = true;
+} else {
+	$hourly = false;
+}
 
 if (file_exists("../data/csv/$date1")) {
 	$file       = file("../data/csv/$date1");
@@ -149,6 +154,93 @@ if (file_exists("../data/csv/$date1")) {
 			}
 		} // each meters
 	} // End of foreach
+
+	// Convert 5-minute values to hourly values when requested
+	if ($hourly) {
+		for ($s = 0; $s < count($metlist); $s++) {
+			$meter = $metlist[$s];
+			$hourlyStack = array();
+
+			$currentHour = null;
+			$hourValues = array();
+			$hourTimestamp = null;
+
+			foreach ($stack[$s] as $entry) {
+				$timestamp = $entry[0];
+				$value     = $entry[1];
+
+				if ($value === null) {
+					continue;
+				}
+
+				$hourKey = date('Y-m-d H', $timestamp / 1000);
+
+				if ($currentHour === null) {
+					$currentHour = $hourKey;
+					$hourTimestamp = strtotime($hourKey . ':00') * 1000;
+				}
+
+				// New hour
+				if ($hourKey !== $currentHour) {
+					if (!empty($hourValues)) {
+
+						if (${'TYPE' . $meter} == 'Sensor') {
+							// Sensor: average the 5-minute readings
+							$hourValue = array_sum($hourValues) / count($hourValues);
+
+						} elseif (!$cumul) {
+							// Meter: sum the 5-minute consumption values
+							$hourValue = array_sum($hourValues);
+
+						} else {
+							// Cumulative meter
+							$hourValue = end($hourValues) - reset($hourValues);
+
+							if ($hourValue < 0) {
+								$hourValue += ${'PASSO' . $meter};
+							}
+						}
+
+						$hourlyStack[] = array(
+							$hourTimestamp,
+							round($hourValue, ${'PRECI' . $meter})
+						);
+					}
+
+					$hourValues = array();
+					$currentHour = $hourKey;
+					$hourTimestamp = strtotime($hourKey . ':00') * 1000;
+				}
+
+				$hourValues[] = $value;
+			}
+
+			// Last hour
+			if (!empty($hourValues)) {
+
+				if (${'TYPE' . $meter} == 'Sensor') {
+					$hourValue = array_sum($hourValues) / count($hourValues);
+
+				} elseif (!$cumul) {
+					$hourValue = array_sum($hourValues);
+
+				} else {
+					$hourValue = end($hourValues) - reset($hourValues);
+
+					if ($hourValue < 0) {
+						$hourValue += ${'PASSO' . $meter};
+					}
+				}
+
+				$hourlyStack[] = array(
+					$hourTimestamp,
+					round($hourValue, ${'PRECI' . $meter})
+				);
+			}
+
+			$stack[$s] = $hourlyStack;
+		}
+	}
 
 	$dday = date($DATEFORMAT, mktime(0, 0, 0, $month, $day, $year));
 

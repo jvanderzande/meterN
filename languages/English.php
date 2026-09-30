@@ -40,6 +40,7 @@ $lgENERGYF='Flow ph.';
 //Buttons
 $lgOK='OK';
 $lgCUMU='Cumulative';
+$lgHOURLY='Hourly';
 $lgBACK='Back';
 
 // ### READINGS

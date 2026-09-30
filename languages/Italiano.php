@@ -40,6 +40,7 @@ $lgENERGYF='Energia di scambio ph.';
 //Buttons
 $lgOK='OK';
 $lgCUMU='Cumulativo';
+$lgHOURLY='Ora';
 $lgBACK='Indietro';
 
 // ### READINGS

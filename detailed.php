@@ -68,6 +68,12 @@ if (isset($_POST["cumul"])) {
 } else {
 	$cumul = false;
 }
+if (isset($_POST["hourly"])) {
+	$hourly = true;
+	$cumul = false;
+} else {
+	$hourly = false;
+}
 
 $titledate = substr($date1, 0, 10);
 $csvdate1  = (substr($date1, 6, 4)) . (substr($date1, 3, 2)) . (substr($date1, 0, 2)) . ".csv";
@@ -189,10 +195,11 @@ series: []
 };
 var date1 = '$csvdate1';
 var cumul= '$cumul';
+var hourly= '$hourly';
 var meter = '$getvalue';
 Mychart= Highcharts.chart('container',options);
 Mychart.showLoading();
-  $.getJSON('programs/programdetailed.php', {date1: date1, meter: meter ,cumul:cumul}, function(JSONResponse)
+  $.getJSON('programs/programdetailed.php', {date1: date1, meter: meter ,cumul:cumul,hourly:hourly}, function(JSONResponse)
 {
 options.series = JSONResponse.data;
 Mychart= Highcharts.chart('container',options);
@@ -239,7 +246,12 @@ echo "
 if ($cumul) {
 	echo ' checked';
 }
-echo "> $lgCUMU
+echo "> $lgCUMU";
+echo "<input  type='checkbox' name='hourly' value='off'";
+if ($hourly) {
+	echo ' checked';
+}
+echo "> $lgHOURLY
 <br>
 </form>
 <br>";
