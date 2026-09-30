@@ -12,7 +12,6 @@ $lgMINDEX='Головна';
 $lgMDETAILED='Детально';
 $lgMREAD='Читанння';
 $lgMCOMPARISON='Порівняння';
-$lgMCOMPARISONYM='CompareYearMonth';
 $lgMDASH='Панель';
 $lgMINFO='Інфо';
 

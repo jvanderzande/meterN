@@ -9,7 +9,7 @@
 <td COLSPAN="3" class="cadre">
             <div class="menu"> 
               <font class="menu">
-&nbsp;<a href='index.php'><?php echo $lgMINDEX;?></a> | <a href='detailed.php'><?php echo $lgMDETAILED;?></a> | <a href='readings.php'><?php echo $lgMREAD;?></a>  | <a href='comparison.php'><?php echo $lgMCOMPARISON;?></a> | <a href='comparisonym.php'><?php echo $lgMCOMPARISONYM;?></a> | <a href='dashboard.php'><?php echo $lgMDASH;?></a> | <a href='info.php'><?php echo $lgMINFO;?></a> || <font size="-2"><a href='admin/'>admin</a></font></font>
+&nbsp;<a href='index.php'><?php echo $lgMINDEX;?></a> | <a href='detailed.php'><?php echo $lgMDETAILED;?></a> | <a href='readings.php'><?php echo $lgMREAD;?></a>  | <a href='comparison.php'><?php echo $lgMCOMPARISON;?></a> | <a href='dashboard.php'><?php echo $lgMDASH;?></a> | <a href='info.php'><?php echo $lgMINFO;?></a> || <font size="-2"><a href='admin/'>admin</a></font></font>
             </div>
 </td></tr>
 <tr valign="top"> 

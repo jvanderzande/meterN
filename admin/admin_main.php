@@ -242,22 +242,6 @@ for ($i = 0; $i < $cnt; $i++) {
 echo "
 </select>
 </td></tr>
-<tr><td>
-Years to compare for CompareYearMonth
-<select name='COMPAREYEARSx'>
-";
-for ($i = 1; $i <= 10; $i++) {
-	if ($COMPAREYEARS == $i) {
-		echo "<option SELECTED>";
-	} else {
-		echo "<option>";
-	}
-	echo "$i</option>";
-}
-echo "
-</select>
-</td></tr>
-
 <tr><td colspan=2><b>Daily cleanup : </td></tr>
 <tr><td>Keep <input type='number' name='KEEPDDAYSx' value='$KEEPDDAYS' maxlength='4' min='0' style='width:60px' title='0 is unlimited'>fully detailed days</td>
 <td>Maintain logs size to <input type='number' name='AMOUNTLOGx' value='$AMOUNTLOG' maxlength='4' min='1000' max='50000' style='width:60px'>lines</td></tr>
